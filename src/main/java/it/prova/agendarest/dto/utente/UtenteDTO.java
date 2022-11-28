@@ -1,12 +1,17 @@
 package it.prova.agendarest.dto.utente;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import it.prova.agendarest.model.Agenda;
 import it.prova.agendarest.model.Ruolo;
 import it.prova.agendarest.model.StatoUtente;
 import it.prova.agendarest.model.Utente;
@@ -39,6 +44,9 @@ public class UtenteDTO {
 
 	private Long[] ruoliIds;
 
+	@JsonIgnoreProperties(value = "{utente}")
+	private List<Agenda> agende = new ArrayList<>();
+	
 	public UtenteDTO() {
 	}
 
