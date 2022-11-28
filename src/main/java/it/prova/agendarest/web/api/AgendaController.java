@@ -58,7 +58,12 @@ public class AgendaController {
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void elimina(@PathVariable(name = "id") Long id) {
+	public void elimina(@PathVariable(name = "id", required = true) Long id) {
 		agendaService.rimuovi(id);
+	}
+	
+	@GetMapping("/{id}")
+	public AgendaDTO findById(@PathVariable(name = "id", required = true) Long id) {
+		return AgendaDTO.buildAgendaDTOfromModel(agendaService.caricaSingoloElementoConUtente(id), true);
 	}
 }
