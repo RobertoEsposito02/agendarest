@@ -66,4 +66,9 @@ public class AgendaController {
 	public AgendaDTO findById(@PathVariable(name = "id", required = true) Long id) {
 		return AgendaDTO.buildAgendaDTOfromModel(agendaService.caricaSingoloElementoConUtente(id), true);
 	}
+	
+	@GetMapping("/listAllTuoi")
+	public List<AgendaDTO> listAllTuoi(){
+		return AgendaDTO.createListAgendaDTOFromModel(agendaService.listAllEagerTuoi(), true);
+	}
 }

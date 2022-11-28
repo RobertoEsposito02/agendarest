@@ -18,5 +18,7 @@ public interface AgendaService {
 	public Agenda inserisciNuovo(Agenda agendaInstance);
 
 	public void rimuovi(Long idToRemove);
+	
+	public List<Agenda> listAllEagerTuoi();
 
 }

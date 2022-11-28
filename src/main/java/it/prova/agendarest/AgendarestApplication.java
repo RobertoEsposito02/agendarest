@@ -69,6 +69,10 @@ public class AgendarestApplication implements CommandLineRunner {
 		Agenda agenda1 = new Agenda("descrizione", LocalDateTime.of(2022, 10, 11, 12, 30),
 				LocalDateTime.of(2022, 11, 1, 13, 0), utenteServiceInstance.listAllUtenti().get(0));
 		agendaServiceInstance.inserisciNuovo(agenda1);
+		
+		Agenda agenda2 = new Agenda("descrizione2", LocalDateTime.of(2022, 10, 11, 12, 30),
+				LocalDateTime.of(2022, 11, 1, 13, 0), utenteServiceInstance.listAllUtenti().get(1));
+		agendaServiceInstance.inserisciNuovo(agenda2);
 	}
 
 }
