@@ -15,4 +15,7 @@ public interface AgendaRepository extends CrudRepository<Agenda, Long>{
 	
 	@Query("select distinct a from Agenda a left join fetch a.utente u")
 	List<Agenda> listAllEager();
+	
+	@Query("from Agenda a left join fetch a.utente u where u.id = :id")
+	List<Agenda> listAllEagerTuoi(Long id);
 }
