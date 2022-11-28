@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import it.prova.agendarest.model.Agenda;
+import it.prova.agendarest.dto.agenda.AgendaDTO;
 import it.prova.agendarest.model.Ruolo;
 import it.prova.agendarest.model.StatoUtente;
 import it.prova.agendarest.model.Utente;
@@ -45,7 +45,7 @@ public class UtenteDTO {
 	private Long[] ruoliIds;
 
 	@JsonIgnoreProperties(value = "{utente}")
-	private List<Agenda> agende = new ArrayList<>();
+	private List<AgendaDTO> agende = new ArrayList<>();
 	
 	public UtenteDTO() {
 	}
@@ -138,6 +138,14 @@ public class UtenteDTO {
 	public void setRuoliIds(Long[] ruoliIds) {
 		this.ruoliIds = ruoliIds;
 	}
+	
+	public List<AgendaDTO> getAgende() {
+		return agende;
+	}
+
+	public void setAgende(List<AgendaDTO> agende) {
+		this.agende = agende;
+	}
 
 	public Utente buildUtenteModel(boolean includeIdRoles) {
 		Utente result = new Utente(this.id, this.username, this.password, this.nome, this.cognome, this.email,
@@ -148,8 +156,7 @@ public class UtenteDTO {
 		return result;
 	}
 
-	// niente password...
-	public static UtenteDTO buildUtenteDTOFromModel(Utente utenteModel) {
+	public static UtenteDTO buildUtenteDTOFromModel(Utente utenteModel, boolean includiAgende) {
 		UtenteDTO result = new UtenteDTO(utenteModel.getId(), utenteModel.getUsername(), utenteModel.getNome(),
 				utenteModel.getCognome(), utenteModel.getStato());
 
@@ -157,6 +164,9 @@ public class UtenteDTO {
 			result.ruoliIds = utenteModel.getRuoli().stream().map(r -> r.getId()).collect(Collectors.toList())
 					.toArray(new Long[] {});
 
+		if(includiAgende)
+			result.setAgende(AgendaDTO.createListAgendaDTOFromModel(utenteModel.getAgende(),false));
+		
 		return result;
 	}
 }

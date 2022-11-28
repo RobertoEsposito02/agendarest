@@ -6,14 +6,16 @@ import it.prova.agendarest.model.Agenda;
 
 public interface AgendaService {
 	public List<Agenda> listAll();
+	
+	public List<Agenda> listAllEager();
 
 	public Agenda caricaSingoloElemento(Long id);
 	
 	public Agenda caricaSingoloElementoConUtente(Long id);
 
-	public void aggiorna(Agenda agendaInstance);
+	public Agenda aggiorna(Agenda agendaInstance);
 
-	public void inserisciNuovo(Agenda agendaInstance);
+	public Agenda inserisciNuovo(Agenda agendaInstance);
 
 	public void rimuovi(Long idToRemove);
 

@@ -3,10 +3,12 @@ package it.prova.agendarest.service.agenda;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import it.prova.agendarest.model.Agenda;
 import it.prova.agendarest.repository.agenda.AgendaRepository;
 
+@Service
 public class AgendaServiceImpl implements AgendaService{
 
 	@Autowired
@@ -28,18 +30,23 @@ public class AgendaServiceImpl implements AgendaService{
 	}
 
 	@Override
-	public void aggiorna(Agenda agendaInstance) {
-		repository.save(agendaInstance);
+	public Agenda aggiorna(Agenda agendaInstance) {
+		return repository.save(agendaInstance);
 	}
 
 	@Override
-	public void inserisciNuovo(Agenda agendaInstance) {
-		repository.save(agendaInstance);
+	public Agenda inserisciNuovo(Agenda agendaInstance) {
+		return repository.save(agendaInstance);
 	}
 
 	@Override
 	public void rimuovi(Long idToRemove) {
 		repository.deleteById(idToRemove);
+	}
+
+	@Override
+	public List<Agenda> listAllEager() {
+		return repository.listAllEager();
 	}
 
 }
