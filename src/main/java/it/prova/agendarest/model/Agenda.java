@@ -1,6 +1,6 @@
 package it.prova.agendarest.model;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,9 +22,9 @@ public class Agenda {
 	@Column(name = "descrzione")
 	private String descrizione;
 	@Column(name = "dataorainizio")
-	private LocalTime dataOraInizio;
+	private LocalDate dataOraInizio;
 	@Column(name = "dataorafine")
-	private LocalTime dataOraFine;
+	private LocalDate dataOraFine;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "utente_id", nullable = false)
@@ -32,8 +32,16 @@ public class Agenda {
 	
 	public Agenda() {
 	}
+	
+	public Agenda(Long id,String descrizione, LocalDate dataOraInizio, LocalDate dataOraFine) {
+		super();
+		this.id = id;
+		this.descrizione = descrizione;
+		this.dataOraInizio = dataOraInizio;
+		this.dataOraFine = dataOraFine;
+	}
 
-	public Agenda(String descrizione, LocalTime dataOraInizio, LocalTime dataOraFine, Utente utente) {
+	public Agenda(String descrizione, LocalDate dataOraInizio, LocalDate dataOraFine, Utente utente) {
 		super();
 		this.descrizione = descrizione;
 		this.dataOraInizio = dataOraInizio;
@@ -41,7 +49,7 @@ public class Agenda {
 		this.utente = utente;
 	}
 
-	public Agenda(Long id, String descrizione, LocalTime dataOraInizio, LocalTime dataOraFine, Utente utente) {
+	public Agenda(Long id, String descrizione, LocalDate dataOraInizio, LocalDate dataOraFine, Utente utente) {
 		super();
 		this.id = id;
 		this.descrizione = descrizione;
@@ -66,20 +74,29 @@ public class Agenda {
 		this.descrizione = descrizione;
 	}
 
-	public LocalTime getDataOraInizio() {
+	public LocalDate getDataOraInizio() {
 		return dataOraInizio;
 	}
 
-	public void setDataOraInizio(LocalTime dataOraInizio) {
+	public void setDataOraInizio(LocalDate dataOraInizio) {
 		this.dataOraInizio = dataOraInizio;
 	}
 
-	public LocalTime getDataOraFine() {
+	public LocalDate getDataOraFine() {
 		return dataOraFine;
 	}
 
-	public void setDataOraFine(LocalTime dataOraFine) {
+	public void setDataOraFine(LocalDate dataOraFine) {
 		this.dataOraFine = dataOraFine;
 	}
+
+	public Utente getUtente() {
+		return utente;
+	}
+
+	public void setUtente(Utente utente) {
+		this.utente = utente;
+	}
+	
 	
 }
